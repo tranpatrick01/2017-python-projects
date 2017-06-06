@@ -37,6 +37,9 @@ def PlayAgain():
     print('Do you want to play again ( yes or no)')
     return input().lower().startswith('y')
 
+def makeMove(board, letter, move):
+    board[move] = letter
+
 def isWinner(bo, le):
     #bo= board and le= letter
     return((bo[7] == le and bo[8] == le and bo[9] == le)or #across top
@@ -64,6 +67,43 @@ def getPlayerMove(board):
         print("What's your next move? (1-9)")
         move = input()
     return int(move)
+
+def chooseRandomMoveFromList(board, movesList):
+    possibleMoves = []
+    
+    for i in movesList:
+        if isSpaceFree(board, i):
+            possibleMoves.append(i)
+
+def getComputerMove(board, computerLetter):
+    if computerLetter == 'X':
+        playerLetter = 'O'
+    else:
+        playerLetter = 'X'
+    #Here is our algorithm for out Tic Tac Toe
+    #First, check if we can win in the next move
+    for i in range(1, 10):
+        copy = getBoardCopy(board)
+        if isSpaceFree(copy, i):
+            makeMove(copy, computerLetter, i)
+            if isWinner(copy, computerLetter):
+                return i
+    #check if the player could win on their next move, and block them.
+    for i in range(1, 10):
+        copy = getBoardCopy(board)
+        if isSpaceFree(copy, i):
+            makeMove(copy, computerLetter, i)
+            if isWinner(copy, computerLetter):
+                return i
+    #try to take one of the corners, if they are free
+    move = chooseRandomMoveFromList(board, [2, 4, 6, 8])
+    if move != None:
+        return move
+    #Try to take the center, if its free
+    if isSpaceFree(board, 5):
+        return 5
+    #Move on one of the sides
+    return chooseRandomMoveFromList(board, [2, 4, 6, 8])
 
 
 
