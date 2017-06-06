@@ -140,6 +140,24 @@ while True:
                 else:
                     turn = 'computer'
 
+        else:
+
+            move = getComputerMove(theBoard, computerLetter)
+            makeMove(theBoard, computerLetter, move)
+            if isWinner(theBoard, computerLetter):
+                drawBoard(theBoard)
+                print('The computer has beaten you! you lose.')
+            else:
+                if isBoardFull(theBoard):
+                    drawBoard(theBoard)
+                    print('The game is a tie')
+                    break
+                else:
+                    turn = 'player'
+
+
+    if not PlayAgain():
+        break
 
 
 
