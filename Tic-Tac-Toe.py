@@ -124,7 +124,7 @@ while True:
     while gamesIsplaying:
         if turn == 'player':
         #players turn
-            drawBoard(board)
+            drawBoard(theBoard)
             move = getPlayerMove(theBoard)
             makeMove(theBoard, playerLetter, move)
 
