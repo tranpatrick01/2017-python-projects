@@ -105,6 +105,45 @@ def getComputerMove(board, computerLetter):
     #Move on one of the sides
     return chooseRandomMoveFromList(board, [2, 4, 6, 8])
 
+def isBoardFull(board):
+    #return true when all space is occupied
+    for i in range(1, 10):
+        if isSpaceFree(board, i):
+            return False
+    return True
+
+print("Welcome to Tic-Tac-Toe")
+
+while True:
+    theBoard = [' '] * 10
+    playerLetter, computerLetter = inputPlayerLetter()
+    turn = whoGoesFirst()
+    print('The ' + turn + ' will go first.')
+    gamesIsplaying = True
+
+    while gamesIsplaying:
+        if turn == 'player':
+        #players turn
+            drawBoard(board)
+            move = getPlayerMove(theBoard)
+            makeMove(theBoard, playerLetter, move)
+
+            if isWinner(theBoard, playerLetter):
+                drawBoard(theBoard)
+                print('Horray! You have won the game')
+                gamesIsplaying = False
+            else:
+                if isBoardFull(theBoard):
+                    drawBoard(theBoard)
+                    print('The game is a tie')
+                    break
+                else:
+                    turn = 'computer'
+
+
+
+
+
 
 
 
