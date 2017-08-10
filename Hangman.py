@@ -41,10 +41,11 @@ def guessing(user):
             
             li.remove(guess)
             print("You've guessed one right.")
-            guess = input('Guess another letter')
             if len(li) == 0:
                 print("You've guessed all of the words.")
                 break
+            guess = input('Guess another letter')
+            
             
         else:
             count+=1
