@@ -38,14 +38,15 @@ def guessing(user):
     count = 0
     while True: 
         if guess in li:
+            
+            li.remove(guess)
+            print("You've guessed one right.")
+            guess = input('Guess another letter')
             if len(li) == 0:
                 print("You've guessed all of the words.")
                 break
-            li.remove(guess)
-            print("You've gussed one right.")
-            guess = input('Guess another letter')
             
-        elif guess != li:
+        else:
             count+=1
             print("You didn't guess correctly, try again")
             guess = input('Guess another letter')
