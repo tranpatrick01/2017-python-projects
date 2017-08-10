@@ -37,19 +37,19 @@ def guessing(user):
     totalGuesses = 6
     count = 0
     while True: 
-        if guess ==li:
+        if guess in li:
             li.remove(guess)
             print("You've gussed one right.")
             guess = input('Guess another letter')
-        elif len(li) == 0:
-            print("You've guessed all of the words.")
-            break
+            if len(li) == 0:
+                print("You've guessed all of the words.")
+                break
         elif guess != li:
             print("You didn't guess correctly, try again")
             guess = input('Guess another letter')
-        if totalGuesses == count:
-                print('You lose.')
-                break
+            if totalGuesses == count:
+                    print('You lose.')
+                    break
             
             
 
